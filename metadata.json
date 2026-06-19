@@ -1,0 +1,8 @@
+{
+  "name": "Heartland Mortgage",
+  "description": "Production-ready digital system for Heartland Mortgage, featuring a modern CMS-driven site, AI chat, and consultation booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -37,11 +37,12 @@ export function Home() {
         }
       };
 
-      await fetch('/api/fub/events', {
+      const res = await fetch('/api/fub/events', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
+      if (!res.ok) throw new Error('Request failed');
 
       setIsSubmittingQuick(false);
       toast.success("Consultation request sent to Cami!");

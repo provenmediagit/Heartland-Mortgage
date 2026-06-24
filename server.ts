@@ -71,7 +71,10 @@ If you don't know the answer, say exactly: "Let me confirm that for you."`;
   // FUB API endpoint
   app.post('/api/fub/events', async (req, res) => {
     try {
-      const apiKey = "fka_0oN2LuVLtZH0erxLV0IOQXYY1vEE0xZSFx";
+      const apiKey = process.env.FUB_API_KEY;
+      if (!apiKey) {
+        throw new Error("FUB_API_KEY environment variable is required");
+      }
       const encodedKey = Buffer.from(apiKey + ":").toString('base64');
 
       const fubResponse = await fetch("https://api.followupboss.com/v1/events", {

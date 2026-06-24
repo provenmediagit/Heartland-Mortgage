@@ -19,7 +19,7 @@ export function BookConsultation() {
   const [isSuccess, setIsSuccess] = useState(false);
   const reduce = useReducedMotion();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!date) {
         toast.error("Please select a date.");
@@ -27,12 +27,42 @@ export function BookConsultation() {
     }
 
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const val = (id: string) =>
+        (document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null)?.value || '';
+      const firstName = val('firstName');
+      const lastName = val('lastName');
+      const email = val('email');
+      const phone = val('phone');
+      const topic = val('topic');
+
+      const payload = {
+        source: "Heartland Mortgage Consultation Booking",
+        type: "Inquiry",
+        message: `Consultation requested for ${format(date, "PPP")}.${topic ? ` Topic: ${topic}` : ''}`,
+        person: {
+          firstName: firstName,
+          lastName: lastName,
+          emails: [{ value: email }],
+          phones: [{ value: phone }]
+        }
+      };
+
+      const res = await fetch('/api/fub/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Request failed');
+
       setIsSubmitting(false);
       setIsSuccess(true);
       toast.success("Consultation booked successfully!");
-    }, 1500);
+    } catch (err) {
+      setIsSubmitting(false);
+      toast.error("There was an issue booking your consultation. Please call (701) 670-8027.");
+    }
   };
 
   if (isSuccess) {

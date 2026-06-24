@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
+import { Stagger, StaggerItem, Reveal } from '../lib/motion';
 
 export function Footer() {
   return (
     <footer className="border-t bg-card py-12">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-4">
+        <Stagger className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <StaggerItem className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <img src="/heartland-mortgage_concept3_monogram.svg" alt="Heartland Mortgage" className="h-40 w-auto opacity-90 hover:opacity-100 transition-opacity" />
             </Link>
@@ -17,40 +18,40 @@ export function Footer() {
               <p>Cami Hinz</p>
               <p>NMLS# 2808498</p>
             </div>
-          </div>
-          
-          <div className="space-y-4">
+          </StaggerItem>
+
+          <StaggerItem className="space-y-4">
             <h4 className="font-semibold text-foreground">Quick Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/loan-programs" className="hover:text-primary">Loan Programs</Link></li>
-              <li><Link to="/refinance" className="hover:text-primary">Refinance</Link></li>
-              <li><Link to="/first-time-buyers" className="hover:text-primary">Your Path Home</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-primary transition-colors">Loan Programs</Link></li>
+              <li><Link to="/refinance" className="hover:text-primary transition-colors">Refinance</Link></li>
+              <li><Link to="/first-time-buyers" className="hover:text-primary transition-colors">Your Path Home</Link></li>
             </ul>
-          </div>
+          </StaggerItem>
 
-          <div className="space-y-4">
+          <StaggerItem className="space-y-4">
             <h4 className="font-semibold text-foreground">Support</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/faq" className="hover:text-primary">FAQ</Link></li>
-              <li><Link to="/resources" className="hover:text-primary">Education Hub</Link></li>
-              <li><Link to="/contact" className="hover:text-primary">Contact Us</Link></li>
-              <li><Link to="/admin" className="hover:text-primary text-muted-foreground">Admin Login</Link></li>
+              <li><Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+              <li><Link to="/resources" className="hover:text-primary transition-colors">Education Hub</Link></li>
+              <li><Link to="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
+              <li><Link to="/admin" className="hover:text-primary text-muted-foreground transition-colors">Admin Login</Link></li>
             </ul>
-          </div>
+          </StaggerItem>
 
-          <div className="space-y-4">
+          <StaggerItem className="space-y-4">
             <h4 className="font-semibold text-foreground">Legal & Compliance</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="hover:text-primary">Terms of Service</Link></li>
-              <li><Link to="/accessibility" className="hover:text-primary">Accessibility</Link></li>
+              <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
+              <li><Link to="/accessibility" className="hover:text-primary transition-colors">Accessibility</Link></li>
             </ul>
             <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
               Heartland Mortgage is an Equal Housing Lender. As prohibited by federal law, we do not engage in business practices that discriminate on the basis of race, color, religion, national origin, sex, marital status, age (provided you have the capacity to enter into a binding contract), because all or part of your income may be derived from any public assistance program, or because you have, in good faith, exercised any right under the Consumer Credit Protection Act.
             </p>
-          </div>
-        </div>
-        <div className="mt-12 border-t border-border pt-8 text-center text-sm md:text-left">
+          </StaggerItem>
+        </Stagger>
+        <Reveal className="mt-12 border-t border-border pt-8 text-center text-sm md:text-left">
            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex flex-col md:flex-row items-center gap-6 text-[10px] text-muted-foreground tracking-widest uppercase">
                 <span>CAMI HINZ | LICENSED LOAN ORIGINATOR</span>
@@ -75,7 +76,7 @@ export function Footer() {
            <div className="mt-8 text-xs text-muted-foreground opacity-50 flex justify-between items-center">
              <p>© {new Date().getFullYear()} Heartland Mortgage. All rights reserved.</p>
            </div>
-        </div>
+        </Reveal>
       </div>
     </footer>
   );

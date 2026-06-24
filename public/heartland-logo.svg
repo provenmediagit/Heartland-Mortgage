@@ -1,0 +1,19 @@
+<svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heartland Mortgage">
+  <!-- Concept 3: Monogram Badge. Transparent background. -->
+  <g transform="translate(180,110)">
+    <!-- badge ring -->
+    <circle cx="0" cy="0" r="84" fill="none" stroke="#0F4C4A" stroke-width="6"/>
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#C99A3B" stroke-width="2"/>
+    <!-- roof accent over monogram -->
+    <path d="M-44 -34 L0 -62 L44 -34" fill="none" stroke="#C99A3B" stroke-width="6"
+          stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- HM monogram -->
+    <text x="0" y="34" text-anchor="middle" font-family="Georgia, serif"
+          font-size="78" font-weight="bold" fill="#0F4C4A">HM</text>
+  </g>
+  <!-- Wordmark -->
+  <text x="180" y="246" text-anchor="middle" font-family="Georgia, serif"
+        font-size="34" font-weight="bold" letter-spacing="2" fill="#0F4C4A">HEARTLAND</text>
+  <text x="180" y="278" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="18" font-weight="600" letter-spacing="11" fill="#C99A3B">MORTGAGE</text>
+</svg>

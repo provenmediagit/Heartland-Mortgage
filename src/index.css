@@ -114,5 +114,56 @@
     }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
     }
+}
+
+/* ------------------------------------------------------------------ */
+/* Decorative motion utilities (additive — no theme colors changed)    */
+/* ------------------------------------------------------------------ */
+@keyframes hm-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-22px); }
+}
+@keyframes hm-aurora {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(4%, -3%, 0) scale(1.1); }
+  66% { transform: translate3d(-3%, 4%, 0) scale(0.95); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes hm-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes hm-spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-hm-float { animation: hm-float 7s ease-in-out infinite; }
+.animate-hm-aurora { animation: hm-aurora 16s ease-in-out infinite; }
+.animate-hm-spin-slow { animation: hm-spin-slow 28s linear infinite; }
+
+/* Animated gradient text using the existing palette */
+.hm-text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--primary) 20%,
+    var(--accent) 40%,
+    var(--primary) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hm-shimmer 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hm-float,
+  .animate-hm-aurora,
+  .animate-hm-spin-slow,
+  .hm-text-shimmer {
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
 }

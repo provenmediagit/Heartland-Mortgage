@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
+import { Reveal, Stagger, StaggerItem, TiltCard, Magnetic } from '../lib/motion';
 
 export function Process() {
   const steps = [
@@ -43,17 +44,25 @@ export function Process() {
 
   return (
     <div className="py-20 text-center container mx-auto px-4 max-w-3xl">
-      <h1 className="text-4xl font-bold mb-6">Our Mortgage Process</h1>
-      <p className="text-xl text-muted-foreground mb-8">Guided, modern, and transparent.</p>
-      <div className="text-left space-y-4 mb-12">
+      <Reveal>
+        <h1 className="text-4xl font-bold mb-6">Our Mortgage Process</h1>
+        <p className="text-xl text-muted-foreground mb-8">Guided, modern, and transparent.</p>
+      </Reveal>
+      <Stagger className="text-left space-y-4 mb-12">
         {steps.map((step, index) => (
-          <div key={index} className="p-6 bg-card rounded-2xl border border-border transition-all hover:shadow-md">
-             <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-             <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
-          </div>
+          <StaggerItem key={index} y={28}>
+            <TiltCard max={6} className="p-6 bg-card rounded-2xl border border-border transition-shadow hover:shadow-xl">
+               <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+               <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+            </TiltCard>
+          </StaggerItem>
         ))}
-      </div>
-      <Button asChild size="lg"><Link to="/apply">Get Started Today</Link></Button>
+      </Stagger>
+      <Reveal>
+        <Magnetic>
+          <Button asChild size="lg"><Link to="/apply">Get Started Today</Link></Button>
+        </Magnetic>
+      </Reveal>
     </div>
   );
 }
@@ -61,11 +70,13 @@ export function Process() {
 export function Resources() {
   return (
     <div className="py-20 text-center container mx-auto px-4 max-w-2xl">
-      <h1 className="text-4xl font-bold mb-6">Education Hub</h1>
-      <p className="text-xl text-muted-foreground mb-8">Knowledge is power. We are compiling our best resources for you.</p>
-      <div className="p-12 border-2 border-dashed border-border rounded-3xl text-muted-foreground">
-         Blog and Mortgage Guides coming soon...
-      </div>
+      <Reveal>
+        <h1 className="text-4xl font-bold mb-6">Education Hub</h1>
+        <p className="text-xl text-muted-foreground mb-8">Knowledge is power. We are compiling our best resources for you.</p>
+        <div className="p-12 border-2 border-dashed border-border rounded-3xl text-muted-foreground">
+           Blog and Mortgage Guides coming soon...
+        </div>
+      </Reveal>
     </div>
   );
 }
@@ -73,25 +84,31 @@ export function Resources() {
 export function Contact() {
   return (
     <div className="py-20 text-center container mx-auto px-4 max-w-2xl">
-      <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
-      <p className="text-xl text-muted-foreground mb-8">We're here to help.</p>
-      <div className="bg-card p-8 rounded-3xl border border-border text-left space-y-4">
-         <div>
-             <h3 className="font-semibold text-foreground">Email</h3>
-             <p className="text-muted-foreground">Cami@heartlandmortgage.net</p>
-         </div>
-         <div>
-             <h3 className="font-semibold text-foreground">Phone</h3>
-             <p className="text-muted-foreground">(701) 670-8027</p>
-         </div>
-         <div>
-             <h3 className="font-semibold text-foreground">Location</h3>
-             <p className="text-muted-foreground">USA</p>
-         </div>
-      </div>
-      <div className="mt-8">
-         <Button asChild size="lg" className="w-full sm:w-auto"><Link to="/book">Schedule a Call Instead</Link></Button>
-      </div>
+      <Reveal>
+        <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
+        <p className="text-xl text-muted-foreground mb-8">We're here to help.</p>
+      </Reveal>
+      <Reveal>
+        <TiltCard max={7} className="bg-card p-8 rounded-3xl border border-border text-left space-y-4">
+           <div>
+               <h3 className="font-semibold text-foreground">Email</h3>
+               <p className="text-muted-foreground">Cami@heartlandmortgage.net</p>
+           </div>
+           <div>
+               <h3 className="font-semibold text-foreground">Phone</h3>
+               <p className="text-muted-foreground">(701) 670-8027</p>
+           </div>
+           <div>
+               <h3 className="font-semibold text-foreground">Location</h3>
+               <p className="text-muted-foreground">USA</p>
+           </div>
+        </TiltCard>
+      </Reveal>
+      <Reveal className="mt-8">
+         <Magnetic>
+           <Button asChild size="lg" className="w-full sm:w-auto"><Link to="/book">Schedule a Call Instead</Link></Button>
+         </Magnetic>
+      </Reveal>
     </div>
   );
 }
@@ -99,13 +116,15 @@ export function Contact() {
 export function AdminDashboard() {
   return (
     <div className="py-20 text-center container mx-auto px-4 max-w-lg">
-      <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
-      <div className="bg-card p-8 rounded-3xl border border-border text-left space-y-4">
-         <p className="text-sm text-muted-foreground mb-4">Secured Area</p>
-         <input type="email" placeholder="Email" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm" />
-         <input type="password" placeholder="Password" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm" />
-         <Button className="w-full mt-4">Login to Dashboard</Button>
-      </div>
+      <Reveal>
+        <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
+        <TiltCard max={6} className="bg-card p-8 rounded-3xl border border-border text-left space-y-4">
+           <p className="text-sm text-muted-foreground mb-4">Secured Area</p>
+           <input type="email" placeholder="Email" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm" />
+           <input type="password" placeholder="Password" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm" />
+           <Button className="w-full mt-4">Login to Dashboard</Button>
+        </TiltCard>
+      </Reveal>
     </div>
   );
 }

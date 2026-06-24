@@ -2,10 +2,16 @@ import { ReactNode } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { Chatbot } from './Chatbot';
+import { ScrollProgress } from './ScrollProgress';
+import { Preloader } from './Preloader';
+import { AnimatedBackground } from './AnimatedBackground';
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col font-sans relative">
+      <Preloader />
+      <AnimatedBackground />
+      <ScrollProgress />
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

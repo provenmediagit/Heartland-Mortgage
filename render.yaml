@@ -1,0 +1,19 @@
+# Render Blueprint for Heartland Mortgage (full-stack: Express API + Vite-built SPA).
+# In Render: New + → "Blueprint" → connect this GitHub repo → it reads this file.
+# Then set the GEMINI_API_KEY value in the dashboard (it is marked secret below).
+services:
+  - type: web
+    name: heartland-mortgage
+    runtime: node
+    plan: free
+    branch: main
+    # --include=dev so Vite/esbuild/Tailwind (devDependencies) install even though NODE_ENV=production
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false   # set this in the Render dashboard (kept out of the repo)

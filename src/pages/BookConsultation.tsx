@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
@@ -10,19 +11,21 @@ import { CheckCircle2, Calendar as CalendarIcon, Clock, PhoneCall, Video } from 
 import { format } from "date-fns";
 import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover";
 import { cn } from "../lib/utils";
+import { Reveal, TiltCard, Magnetic } from '../lib/motion';
 
 export function BookConsultation() {
   const [date, setDate] = useState<Date>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const reduce = useReducedMotion();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!date) {
         toast.error("Please select a date.");
         return;
     }
-    
+
     setIsSubmitting(true);
     // Simulate API call
     setTimeout(() => {
@@ -35,14 +38,21 @@ export function BookConsultation() {
   if (isSuccess) {
     return (
       <div className="py-24 container mx-auto px-4 max-w-lg text-center">
-         <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-emerald-100 mb-6">
+         <motion.div
+            initial={reduce ? false : { scale: 0, rotate: -45 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 14 }}
+            className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-emerald-100 mb-6"
+         >
             <CheckCircle2 className="h-12 w-12 text-emerald-600" />
-         </div>
+         </motion.div>
          <h1 className="text-3xl font-bold tracking-tight text-foreground mb-4">You're Booked!</h1>
          <p className="text-muted-foreground text-lg mb-8">
            We've sent a calendar invitation and confirmation details to your email. We look forward to speaking with you.
          </p>
-         <Button onClick={() => window.location.href = '/'}>Return Home</Button>
+         <Magnetic>
+           <Button onClick={() => window.location.href = '/'}>Return Home</Button>
+         </Magnetic>
       </div>
     );
   }
@@ -51,14 +61,14 @@ export function BookConsultation() {
     <div className="py-20 bg-card min-h-screen">
       <div className="container mx-auto px-4 md:px-6 max-w-5xl">
         <div className="grid md:grid-cols-5 gap-8 items-start">
-            
-            <div className="md:col-span-2 space-y-6">
+
+            <Reveal from="left" className="md:col-span-2 space-y-6">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2">Book a Consultation</h1>
                     <p className="text-muted-foreground">Schedule a 1-on-1 strategy session with Cami to discuss your financing options.</p>
                 </div>
-                
-                <div className="bg-background p-6 rounded-2xl border border-border space-y-6">
+
+                <TiltCard max={7} glare={false} className="bg-background p-6 rounded-2xl border border-border space-y-6">
                     <div className="flex items-center gap-4 border-b border-border pb-6">
                         <div className="h-16 w-16 rounded-full bg-border overflow-hidden flex-shrink-0">
                             <img src="https://images.squarespace-cdn.com/content/v1/63d2e8a7d19ab30bbf1a369b/1755908749138-ODBC8YL72OODF5BMTGO0/Erik+%281%29.png?format=300w" alt="Cami Hinz" className="object-cover w-full h-full" />
@@ -69,7 +79,7 @@ export function BookConsultation() {
                             <p className="text-xs text-muted-foreground mt-1">NMLS# 2808498</p>
                         </div>
                     </div>
-                    
+
                     <div className="space-y-4">
                         <div className="flex items-center gap-3 text-muted-foreground">
                             <Clock className="h-5 w-5 text-primary" />
@@ -84,12 +94,12 @@ export function BookConsultation() {
                             <span>No pressure, no obligation</span>
                         </div>
                     </div>
-                </div>
-            </div>
+                </TiltCard>
+            </Reveal>
 
-            <div className="md:col-span-3 bg-background rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <Reveal from="right" className="md:col-span-3 bg-background rounded-2xl shadow-sm border border-border p-6 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
@@ -100,7 +110,7 @@ export function BookConsultation() {
                     <Input id="lastName" required />
                   </div>
                 </div>
-                
+
                 <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
@@ -153,7 +163,7 @@ export function BookConsultation() {
                         </Select>
                     </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="meetingType">Meeting Preference</Label>
                   <Select required>
@@ -176,7 +186,7 @@ export function BookConsultation() {
                     {isSubmitting ? 'Booking...' : 'Confirm Consultation'}
                 </Button>
             </form>
-            </div>
+            </Reveal>
         </div>
       </div>
     </div>

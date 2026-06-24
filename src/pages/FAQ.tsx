@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
+import { Reveal, Stagger, StaggerItem, Magnetic } from '../lib/motion';
 
 export function FAQ() {
   const faqs = [
@@ -55,34 +56,40 @@ export function FAQ() {
   return (
     <div className="py-20 bg-card min-h-[calc(100vh-theme('spacing.20'))]">
       <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-        <div className="text-center mb-16 space-y-4">
+        <Reveal className="text-center mb-16 space-y-4">
           <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">Frequently Asked Questions</h1>
           <p className="text-xl text-muted-foreground">
             Clear answers to common questions about the mortgage process.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="bg-background p-6 md:p-8 rounded-3xl shadow-sm border border-border">
+        <Reveal className="bg-background p-6 md:p-8 rounded-3xl shadow-sm border border-border">
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-lg font-medium text-foreground hover:text-primary">
-                    {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground leading-relaxed pb-6">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            <Stagger>
+              {faqs.map((faq, index) => (
+                <StaggerItem key={index} y={20}>
+                  <AccordionItem value={`item-${index}`}>
+                    <AccordionTrigger className="text-left text-lg font-medium text-foreground hover:text-primary">
+                        {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground leading-relaxed pb-6">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </Accordion>
-        </div>
+        </Reveal>
 
-        <div className="mt-16 text-center">
+        <Reveal className="mt-16 text-center">
             <p className="text-muted-foreground mb-6">Still have questions?</p>
-            <Button asChild variant="outline" size="lg" className="h-12 border-border">
-                <Link to="/contact">Contact Us</Link>
-            </Button>
-        </div>
+            <Magnetic>
+              <Button asChild variant="outline" size="lg" className="h-12 border-border">
+                  <Link to="/contact">Contact Us</Link>
+              </Button>
+            </Magnetic>
+        </Reveal>
       </div>
     </div>
   );

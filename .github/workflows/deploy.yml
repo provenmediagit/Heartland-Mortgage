@@ -1,0 +1,21 @@
+name: Deploy to Render
+
+# Auto-deploy on every push to main (works regardless of how the Render service
+# was created or which GitHub account owns the repo). Requires one repo secret:
+#   RENDER_API_KEY  -> your Render API key (Account Settings -> API Keys)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            "https://api.render.com/v1/services/srv-d8u3comq1p3s738rumu0/deploys" \
+            -d '{"clearCache":"do_not_clear"}'

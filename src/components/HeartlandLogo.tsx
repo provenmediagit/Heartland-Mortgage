@@ -23,7 +23,7 @@ export function HeartlandLogo({ variant = 'full', light = false, animated = fals
   const draw = animated && !reduce;
 
   const primary = light ? '#FFFFFF' : '#0F4C4A'; // rings / HM / HEARTLAND
-  const accent = light ? '#E0B65A' : '#C99A3B';  // inner ring / roof / MORTGAGE
+  const accent = light ? '#5FBF8F' : '#C99A3B';  // light: green trim (pops on dark) | dark: gold
 
   const drawProps = (delay: number, dur = 1) =>
     draw

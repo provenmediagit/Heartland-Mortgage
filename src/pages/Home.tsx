@@ -225,7 +225,7 @@ export function Home() {
                   <img
                     src="/images/family-firepit.jpg"
                     alt="The Hinz family gathered around the fire pit"
-                    className="aspect-[4/3] w-full object-cover"
+                    className="block w-full h-auto"
                     loading="lazy"
                   />
                 </div>

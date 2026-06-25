@@ -145,6 +145,9 @@
 
 /* Animated gradient text using the existing palette */
 .hm-text-shimmer {
+  display: inline-block;
+  /* room for the glyph overhang so the last letter isn't clipped by background-clip:text */
+  padding-right: 0.14em;
   background: linear-gradient(
     100deg,
     var(--primary) 20%,
@@ -156,6 +159,14 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: hm-shimmer 5s linear infinite;
+}
+
+/* The italic variant (e.g. "Rate", "Checklist") slants the final letter much
+   further right than upright text, and tracking-tight headings pull the box edge
+   inward — so the tip of the E / T can land outside the gradient box and lose its
+   fill. Give italic shimmer text extra right room so the last letter stays filled. */
+.hm-text-shimmer.italic {
+  padding-right: 0.32em;
 }
 
 @media (prefers-reduced-motion: reduce) {

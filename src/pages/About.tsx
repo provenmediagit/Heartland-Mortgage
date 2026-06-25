@@ -81,28 +81,26 @@ export function About() {
             </p>
           </Reveal>
 
-          <Stagger className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+          <Reveal className="columns-2 gap-4 md:gap-6 lg:columns-4 [&>*]:mb-4 md:[&>*]:mb-6">
             {[
               { src: '/images/family-barn.jpg', alt: 'The full Hinz family in front of the barn', caption: 'The whole crew' },
               { src: '/images/grandkids.jpg', alt: "Cami's five grandchildren", caption: 'Five reasons to smile' },
               { src: '/images/kids-trikes.jpg', alt: 'Two of the grandkids on vintage tricycles', caption: 'Sunday rides' },
               { src: '/images/family-dog.jpg', alt: 'The family black Lab with a tennis ball', caption: 'Chief morale officer' },
             ].map((p) => (
-              <StaggerItem key={p.src}>
-                <TiltCard max={12} className="group relative overflow-hidden rounded-2xl border border-border shadow-lg">
-                  <img
-                    src={p.src}
-                    alt={p.alt}
-                    loading="lazy"
-                    className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
-                    <span className="text-xs font-semibold tracking-wide text-white">{p.caption}</span>
-                  </div>
-                </TiltCard>
-              </StaggerItem>
+              <TiltCard key={p.src} max={10} className="group relative block break-inside-avoid overflow-hidden rounded-2xl border border-border shadow-lg">
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  loading="lazy"
+                  className="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
+                  <span className="text-xs font-semibold tracking-wide text-white">{p.caption}</span>
+                </div>
+              </TiltCard>
             ))}
-          </Stagger>
+          </Reveal>
         </div>
       </div>
     </div>

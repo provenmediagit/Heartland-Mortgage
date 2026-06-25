@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+// Load local secrets in dev (no-op in production where Render injects env vars).
+dotenv.config({ path: '.env.local' });
 import express from 'express';
 import path from 'path';
 import { GoogleGenAI } from '@google/genai';

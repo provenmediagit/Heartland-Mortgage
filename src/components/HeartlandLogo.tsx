@@ -2,25 +2,28 @@ import { motion, useReducedMotion } from 'motion/react';
 
 /**
  * Inline, animatable Heartland Mortgage logo (official brand mark).
- * Colors are the brand palette: deep teal #0F4C4A + gold #C99A3B.
+ *  - default (brand): deep teal #0F4C4A + gold #C99A3B — use on LIGHT/cream backgrounds.
+ *  - light: white #FFFFFF + gold #E0B65A — use on DARK backgrounds so it stays visible.
  *
  * Props:
  *  - variant: "full" (badge + HEARTLAND MORTGAGE wordmark) or "monogram" (badge only)
+ *  - light: render the light/white version for dark surfaces
  *  - animated: draw-in the rings/roof + fade the lettering (used by the preloader)
  *  - className: sizing (set a height; width scales with the viewBox)
  */
 type Props = {
   variant?: 'full' | 'monogram';
+  light?: boolean;
   animated?: boolean;
   className?: string;
 };
 
-const TEAL = '#0F4C4A';
-const GOLD = '#C99A3B';
-
-export function HeartlandLogo({ variant = 'full', animated = false, className }: Props) {
+export function HeartlandLogo({ variant = 'full', light = false, animated = false, className }: Props) {
   const reduce = useReducedMotion();
   const draw = animated && !reduce;
+
+  const primary = light ? '#FFFFFF' : '#0F4C4A'; // rings / HM / HEARTLAND
+  const accent = light ? '#E0B65A' : '#C99A3B';  // inner ring / roof / MORTGAGE
 
   const drawProps = (delay: number, dur = 1) =>
     draw
@@ -42,12 +45,12 @@ export function HeartlandLogo({ variant = 'full', animated = false, className }:
 
   const badge = (
     <g transform="translate(180,110)">
-      <motion.circle cx="0" cy="0" r="84" fill="none" stroke={TEAL} strokeWidth="6" {...drawProps(0, 1.1)} />
-      <motion.circle cx="0" cy="0" r="72" fill="none" stroke={GOLD} strokeWidth="2" {...drawProps(0.25, 1)} />
+      <motion.circle cx="0" cy="0" r="84" fill="none" stroke={primary} strokeWidth="6" {...drawProps(0, 1.1)} />
+      <motion.circle cx="0" cy="0" r="72" fill="none" stroke={accent} strokeWidth="2" {...drawProps(0.25, 1)} />
       <motion.path
         d="M-44 -34 L0 -62 L44 -34"
         fill="none"
-        stroke={GOLD}
+        stroke={accent}
         strokeWidth="6"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -60,7 +63,7 @@ export function HeartlandLogo({ variant = 'full', animated = false, className }:
         fontFamily="Georgia, serif"
         fontSize="78"
         fontWeight="bold"
-        fill={TEAL}
+        fill={primary}
         {...fadeProps(0.9)}
       >
         HM
@@ -87,7 +90,7 @@ export function HeartlandLogo({ variant = 'full', animated = false, className }:
         fontSize="34"
         fontWeight="bold"
         letterSpacing="2"
-        fill={TEAL}
+        fill={primary}
         {...fadeProps(1.05)}
       >
         HEARTLAND
@@ -100,7 +103,7 @@ export function HeartlandLogo({ variant = 'full', animated = false, className }:
         fontSize="18"
         fontWeight="600"
         letterSpacing="11"
-        fill={GOLD}
+        fill={accent}
         {...fadeProps(1.2)}
       >
         MORTGAGE

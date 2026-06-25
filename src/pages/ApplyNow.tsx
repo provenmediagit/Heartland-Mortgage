@@ -147,7 +147,7 @@ export function ApplyNow() {
                     <h2 className="text-xl font-semibold text-foreground mb-6">What are your goals?</h2>
                     <div className="space-y-2">
                       <Label htmlFor="goal">I want to...</Label>
-                      <Select required>
+                      <Select>
                         <SelectTrigger id="goal">
                           <SelectValue placeholder="Select an option" />
                         </SelectTrigger>
@@ -160,7 +160,7 @@ export function ApplyNow() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="timeline">Timeline</Label>
-                      <Select required>
+                      <Select>
                         <SelectTrigger id="timeline">
                           <SelectValue placeholder="When do you want to close?" />
                         </SelectTrigger>
@@ -174,7 +174,7 @@ export function ApplyNow() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="veteran">Are you or your spouse a veteran?</Label>
-                      <Select required>
+                      <Select>
                         <SelectTrigger id="veteran">
                           <SelectValue placeholder="Select..." />
                         </SelectTrigger>
@@ -206,7 +206,7 @@ export function ApplyNow() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="credit">Estimated Credit Score</Label>
-                      <Select required>
+                      <Select>
                         <SelectTrigger id="credit">
                           <SelectValue placeholder="Select range" />
                         </SelectTrigger>

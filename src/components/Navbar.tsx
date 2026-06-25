@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { Menu, X, Phone } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Magnetic } from '../lib/motion';
+import { HeartlandLogo } from './HeartlandLogo';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +40,10 @@ export function Navbar() {
         scrolled ? 'h-20' : 'h-32'
       )}>
         <Link to="/" className="flex items-center gap-2">
-          <img
-            src="/heartland-mortgage_concept3_monogram.svg"
-            alt="Heartland Mortgage"
-            className={cn('w-auto py-2 transition-all duration-300', scrolled ? 'h-14' : 'h-28')}
+          <HeartlandLogo
+            variant="full"
+            light
+            className={cn('w-auto py-2 transition-all duration-300', scrolled ? 'h-16' : 'h-28')}
           />
         </Link>
 

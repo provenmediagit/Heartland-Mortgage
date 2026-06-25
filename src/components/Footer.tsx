@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
 import { Stagger, StaggerItem, Reveal } from '../lib/motion';
+import { HeartlandLogo } from './HeartlandLogo';
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
         <Stagger className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <StaggerItem className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <img src="/heartland-mortgage_concept3_monogram.svg" alt="Heartland Mortgage" className="h-40 w-auto opacity-90 hover:opacity-100 transition-opacity" />
+              <HeartlandLogo variant="full" light className="h-40 w-auto opacity-90 hover:opacity-100 transition-opacity" />
             </Link>
             <p className="text-sm text-muted-foreground">
               Guided, modern mortgage experience with real human support. Simplifying home financing.

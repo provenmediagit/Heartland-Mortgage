@@ -182,7 +182,7 @@ export function BookConsultation() {
 
                     <div className="space-y-2">
                         <Label htmlFor="time">Preferred Time</Label>
-                        <Select required>
+                        <Select>
                             <SelectTrigger id="time">
                             <SelectValue placeholder="Select a time block" />
                             </SelectTrigger>
@@ -196,7 +196,7 @@ export function BookConsultation() {
 
                 <div className="space-y-2">
                   <Label htmlFor="meetingType">Meeting Preference</Label>
-                  <Select required>
+                  <Select>
                     <SelectTrigger id="meetingType">
                       <SelectValue placeholder="How should we meet?" />
                     </SelectTrigger>

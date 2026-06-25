@@ -167,6 +167,8 @@
    fill. Give italic shimmer text extra right room so the last letter stays filled. */
 .hm-text-shimmer.italic {
   padding-right: 0.32em;
+  /* cancel the padding's layout gap so the next word keeps normal spacing */
+  margin-right: -0.32em;
 }
 
 @media (prefers-reduced-motion: reduce) {
